@@ -1,0 +1,222 @@
+body {
+    margin: 0;
+    background: #f5f7ff;
+    color: #25253d;
+    font-family: Arial, sans-serif;
+}
+
+p {
+    color: #55556d;
+    line-height: 1.7;
+}
+
+.parrafo-especial {
+    color: #7657d9;
+}
+
+#parrafo-principal {
+    color: #5b6ee1;
+}
+
+.navbar {
+    background: linear-gradient(135deg, #4b3f9e, #667eea);
+    box-shadow: 0 4px 15px rgba(50, 50, 100, 0.15);
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-link {
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.login-section {
+    min-height: calc(100vh - 130px);
+    display: flex;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.login-card {
+    background: white;
+    padding: 45px;
+    border-radius: 24px;
+    box-shadow: 0 15px 45px rgba(60, 60, 110, 0.12);
+}
+
+.login-icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.login-card h1 {
+    font-weight: 700;
+    color: #29294a;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #363653;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1px solid #dcdced;
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.page-title {
+    margin-top: 15px;
+    font-weight: 700;
+    color: #29294a;
+}
+
+.badge {
+    background: #ebe8ff;
+    color: #6651c8;
+    padding: 8px 15px;
+}
+
+.content-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    height: 100%;
+    box-shadow: 0 8px 25px rgba(60, 60, 110, 0.08);
+    transition: 0.3s;
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(60, 60, 110, 0.13);
+}
+
+.content-card h2 {
+    color: #4b3f9e;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+.content-card a {
+    color: #5b6ee1;
+    font-weight: 600;
+}
+
+.profile-card {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 12px 40px rgba(60, 60, 110, 0.1);
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid #eeeaff;
+    box-shadow: 0 8px 25px rgba(60, 60, 110, 0.15);
+}
+
+.profile-name {
+    margin-top: 15px;
+    font-weight: 700;
+    color: #29294a;
+}
+
+.profile-description {
+    max-width: 600px;
+    margin: 10px auto 0;
+}
+
+.info-box {
+    background: #f7f6ff;
+    padding: 25px;
+    border-radius: 18px;
+    height: 100%;
+}
+
+.info-box h3 {
+    color: #4b3f9e;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.skill-badge {
+    display: inline-block;
+    background: white;
+    color: #6651c8;
+    border: 1px solid #e1ddff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.9rem;
+}
+
+img {
+    border-radius: 50%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .login-card {
+        padding: 30px 25px;
+    }
+
+    .profile-card {
+        padding: 30px 20px;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+}
