@@ -1,0 +1,27 @@
+{
+  "name": "practica-html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betsnb/Practica-HTML.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betsnb/Practica-HTML/issues"
+  },
+  "homepage": "https://github.com/betsnb/Practica-HTML#readme",
+  "dependencies": {
+    "dotenv": "^18.0.3",
+    "express": "^5.2.1",
+    "morgan": "^1.12.1",
+    "mssql": "^12.7.2",
+    "nodemon": "^3.1.14"
+  }
+}
