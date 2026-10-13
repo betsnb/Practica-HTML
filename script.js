@@ -1,30 +1,56 @@
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
-    loginForm.addEventListener("submit", function(event) {
+    loginForm.addEventListener("submit", async function(event) {
         event.preventDefault();
 
-        const username = document.getElementById("username").value;
+        const email = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         const message = document.getElementById("loginMessage");
 
-        if (username === "Betsy" && password === "12345") {
-            message.innerHTML = `
-                <div class="alert alert-success">
-                    Inicio de sesión correcto.
-                </div>
-            `;
+        try {
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
 
-            setTimeout(function() {
-                window.location.href = "profile.html";
-            }, 1000);
+            const data = await response.json();
 
-        } else {
+            if (response.ok) {
+                message.innerHTML = `
+                    <div class="alert alert-success">
+                        ${data.mensaje}
+                    </div>
+                `;
+
+                localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+                setTimeout(function() {
+                    window.location.href = "profile.html";
+                }, 1000);
+
+            } else {
+                message.innerHTML = `
+                    <div class="alert alert-danger">
+                        ${data.mensaje}
+                    </div>
+                `;
+            }
+
+        } catch (error) {
             message.innerHTML = `
                 <div class="alert alert-danger">
-                    Usuario o contraseña incorrectos.
+                    No se pudo conectar con el servidor.
                 </div>
             `;
+
+            console.error(error);
         }
     });
 }
@@ -117,4 +143,25 @@ if (countrySelect && regionSelect) {
         .catch(function(error) {
             console.error("Error al cargar los países:", error);
         });
+}
+
+const userInfo = document.getElementById("userInfo");
+
+if (userInfo) {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if (usuario) {
+        userInfo.innerHTML = `
+            <div class="card p-4">
+                <h2>${usuario.nombre}</h2>
+                <p>${usuario.email}</p>
+            </div>
+        `;
+    } else {
+        userInfo.innerHTML = `
+            <div class="alert alert-warning">
+                No hay una sesión iniciada.
+            </div>
+        `;
+    }
 }
