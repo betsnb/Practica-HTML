@@ -1,3 +1,4 @@
+const { hashPassword } = require("../passwordUtils");
 const { sql, poolPromise } = require("../db");
 
 exports.getUsers = async (req, res) => {
@@ -36,6 +37,7 @@ exports.getUser = async (req, res) => {
     }
 };
 
+
 exports.createUser = async (req, res) => {
     try {
         const { nombre, email, password } = req.body;
@@ -46,12 +48,13 @@ exports.createUser = async (req, res) => {
             });
         }
 
+        const hashedPassword = await hashPassword(password);
         const pool = await poolPromise;
 
         const result = await pool.request()
             .input("nombre", sql.NVarChar(100), nombre)
             .input("email", sql.NVarChar(150), email)
-            .input("password", sql.NVarChar(255), password)
+            .input("password", sql.NVarChar(255), hashedPassword)
             .query(`
                 INSERT INTO Users (nombre, email, password)
                 OUTPUT INSERTED.id, INSERTED.nombre, INSERTED.email
@@ -66,20 +69,34 @@ exports.createUser = async (req, res) => {
             });
         }
 
-        res.status(500).json({ error: error.message });
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: "Error al crear el usuario"
+        });
     }
 };
+
+
 
 exports.updateUser = async (req, res) => {
     try {
         const { nombre, email, password } = req.body;
+
+        if (!nombre || !email || !password) {
+            return res.status(400).json({
+                mensaje: "Todos los campos son obligatorios"
+            });
+        }
+
+        const hashedPassword = await hashPassword(password);
         const pool = await poolPromise;
 
         const result = await pool.request()
             .input("id", sql.Int, req.params.id)
             .input("nombre", sql.NVarChar(100), nombre)
             .input("email", sql.NVarChar(150), email)
-            .input("password", sql.NVarChar(255), password)
+            .input("password", sql.NVarChar(255), hashedPassword)
             .query(`
                 UPDATE Users
                 SET nombre = @nombre,
@@ -97,9 +114,14 @@ exports.updateUser = async (req, res) => {
 
         res.json(result.recordset[0]);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: "Error al actualizar el usuario"
+        });
     }
 };
+
 
 exports.deleteUser = async (req, res) => {
     try {

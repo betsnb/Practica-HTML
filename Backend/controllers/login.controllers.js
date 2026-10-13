@@ -1,4 +1,6 @@
+
 const { sql, poolPromise } = require("../db");
+const { verifyPassword } = require("../passwordUtils");
 
 exports.login = async (req, res) => {
     try {
@@ -14,11 +16,10 @@ exports.login = async (req, res) => {
 
         const result = await pool.request()
             .input("email", sql.NVarChar(150), email)
-            .input("password", sql.NVarChar(255), password)
             .query(`
-                SELECT id, nombre, email
+                SELECT id, nombre, email, password
                 FROM Users
-                WHERE email = @email AND password = @password
+                WHERE email = @email
             `);
 
         if (result.recordset.length === 0) {
@@ -27,11 +28,31 @@ exports.login = async (req, res) => {
             });
         }
 
+        const user = result.recordset[0];
+        const validPassword = await verifyPassword(
+            password,
+            user.password
+        );
+
+        if (!validPassword) {
+            return res.status(401).json({
+                mensaje: "Correo o contraseña incorrectos"
+            });
+        }
+
         res.json({
             mensaje: "Inicio de sesión correcto",
-            usuario: result.recordset[0]
+            usuario: {
+                id: user.id,
+                nombre: user.nombre,
+                email: user.email
+            }
         });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error(error);
+
+        res.status(500).json({
+            mensaje: "Error interno del servidor"
+        });
     }
 };
