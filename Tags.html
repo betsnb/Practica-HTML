@@ -20,9 +20,12 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item" data-guest>
                         <a class="nav-link" href="index.html">Login</a>
+                    </li>
+                    <li class="nav-item" data-guest>
+                        <a class="nav-link" href="registro.html">Registro</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="tags.html">HTML Tags</a>
@@ -30,8 +33,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="profile.html">Perfil</a>
                     </li>
+                    <li class="nav-item" data-auth>
+                        <a class="nav-link" href="usuarios.html">Usuarios</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="formulario.html">Formulario</a>
+                    </li>
+                    <li class="nav-item d-none" data-auth>
+                        <button type="button" class="btn btn-sm btn-light ms-lg-3 mt-2 mt-lg-0" id="logoutButton">
+                            Cerrar sesión <span id="navUserName"></span>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -122,6 +133,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

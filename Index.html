@@ -20,9 +20,12 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item" data-guest>
                         <a class="nav-link active" href="index.html">Login</a>
+                    </li>
+                    <li class="nav-item" data-guest>
+                        <a class="nav-link" href="registro.html">Registro</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="tags.html">HTML Tags</a>
@@ -30,8 +33,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="profile.html">Perfil</a>
                     </li>
+                    <li class="nav-item" data-auth>
+                        <a class="nav-link" href="usuarios.html">Usuarios</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="formulario.html">Formulario</a>
+                    </li>
+                    <li class="nav-item d-none" data-auth>
+                        <button type="button" class="btn btn-sm btn-light ms-lg-3 mt-2 mt-lg-0" id="logoutButton">
+                            Cerrar sesión <span id="navUserName"></span>
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -55,15 +66,19 @@
                     </div>
 
                     <form id="loginForm">
-                        <label for="username" class="form-label">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            class="form-control"
-                            id="username"
-                            placeholder="Ingresa tu correo">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">
+                                Email
+                            </label>
+    
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="username"
+                                autocomplete="email"
+                                required
+                                placeholder="Ingresa tu correo">
+                        </div>
 
                         <div class="mb-3">
                             <label for="password" class="form-label">
@@ -74,6 +89,8 @@
                                 type="password"
                                 class="form-control"
                                 id="password"
+                                autocomplete="current-password"
+                                required
                                 placeholder="Ingresa tu contraseña">
                         </div>
 
@@ -86,6 +103,10 @@
                         </button>
 
                     </form>
+
+                    <p class="text-center mt-3 mb-0">
+                        ¿No tienes cuenta? <a href="registro.html">Regístrate</a>
+                    </p>
 
                     <p class="text-center mt-4 parrafo-especial">
                         Explora mi sitio y conoce más sobre mí.

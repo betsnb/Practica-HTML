@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios | Betsy.dev</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Betsy.dev</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item" data-guest>
+                        <a class="nav-link" href="index.html">Login</a>
+                    </li>
+                    <li class="nav-item" data-guest>
+                        <a class="nav-link" href="registro.html">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tags.html">HTML Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">Perfil</a>
+                    </li>
+                    <li class="nav-item" data-auth>
+                        <a class="nav-link active" href="usuarios.html">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formulario.html">Formulario</a>
+                    </li>
+                    <li class="nav-item d-none" data-auth>
+                        <button type="button" class="btn btn-sm btn-light ms-lg-3 mt-2 mt-lg-0" id="logoutButton">
+                            Cerrar sesión <span id="navUserName"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container py-5">
+
+    <div class="text-center mb-5">
+        <span class="badge rounded-pill">REST API</span>
+        <h1 class="page-title">Usuarios</h1>
+        <p>Usuarios registrados en la base de datos, consultados con <code>GET /api/users</code>.</p>
+    </div>
+
+    <div class="content-card">
+
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <h2 class="mb-0">Lista de usuarios</h2>
+
+            <div class="d-flex gap-2">
+                <button type="button" class="btn btn-outline-primary" id="reloadUsersButton">Recargar</button>
+                <button type="button" class="btn btn-primary" id="newUserButton">Nuevo usuario</button>
+            </div>
+        </div>
+
+        <div id="usersMessage"></div>
+
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col" class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">Cargando usuarios...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" id="userForm">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="userModalTitle">Nuevo usuario</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" id="userId">
+
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="userName" maxlength="100" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="userEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="userEmail" maxlength="150" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="userPassword" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="userPassword" minlength="6" autocomplete="new-password">
+                        <div class="form-text" id="userPasswordHelp">Mínimo 6 caracteres.</div>
+                    </div>
+
+                    <div id="userFormMessage"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 Betsy.dev</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

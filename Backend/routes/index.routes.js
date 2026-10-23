@@ -1,10 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const indexController = require("../controllers/index.controllers");
+router.get("/", (req, res) => {
+    res.json({ mensaje: "Bienvenido a mi REST API" });
+});
 
-router.get("/", indexController.home);
-router.get("/marco", indexController.marco);
-router.get("/ping", indexController.ping);
+router.get("/marco", (req, res) => {
+    res.json({ mensaje: "Hola, soy Betsy" });
+});
+
+router.get("/ping", (req, res) => {
+    res.json({ mensaje: "pong" });
+});
 
 module.exports = router;
