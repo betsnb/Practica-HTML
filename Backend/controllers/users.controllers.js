@@ -124,7 +124,6 @@ exports.createUser = async (req, res) => {
     }
 };
 
-// La contraseña es opcional al actualizar: si no se envía, se conserva la actual.
 exports.updateUser = async (req, res) => {
     try {
         const id = parseId(req.params.id);
